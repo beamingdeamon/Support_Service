@@ -37,7 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'ticket',
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.DjangoModelPermissions',
+    )
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -77,7 +84,7 @@ DATABASES = {
     'default': { 
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'test',
-        'USER': 'test',
+        'USER': 'postgres',
         'PASSWORD': '123321',
         'HOST': 'localhost',
         'PORT': '5432',
