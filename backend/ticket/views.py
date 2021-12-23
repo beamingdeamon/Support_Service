@@ -68,6 +68,14 @@ class GetMessagebyId(APIView):
 
 
 @permission_classes((permissions.AllowAny,))
+class GetSortedMessagesByDate(APIView):
+        def get(self, request):   
+                queryset = TicketMessage.objects.order_by('created_date')
+                serializer = serializers.MessageSerializer(queryset, many = True)
+                return Response(serializer.data)
+
+
+@permission_classes((permissions.AllowAny,))
 class DeleteMessage(APIView):
         def delete(self, request, pk):
                 ticket_message = TicketMessage.objects.get(pk=pk)
