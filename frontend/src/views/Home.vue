@@ -5,12 +5,28 @@
 				Support Subjects
 			</div>
 			<div class="ticket_item">
+				{{message}}
 				Salam asdsada  daSDad asdas
 				2021-12-21
 			</div>
 		</div>
 	</div>
 </template>
+
+<script>
+export default {
+	 data() {
+    return {
+      info: message
+    };
+  	},
+  mounted() {
+    axios
+      .get('http://localhost:8000/api/getmessages/')
+      .then(response => (this.message = response));
+  }
+}
+</script>
 
 <style lang="sass" scoped>
 	.wrapper
