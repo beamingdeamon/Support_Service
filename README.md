@@ -16,42 +16,47 @@ ___
 POST Create Ticket
 >http://localhost:8000/api/createticket/
 >>when you creating ticket you must send only one value in the body. It's 'subject'
-Response: 
 
+Response: 
+```json
 {
     "subject": "test"
 }
+```
 
 GET All Tickets
 >http://localhost:8000/api/gettickets/
-Response: 
 
+Response: 
+```json
 {
     "id": 1,
     "subject": "dsadsdasdasdada",
     "date": "2021-12-22"
 }
-
+```
 
 PUT Ticket
 >http://localhost:8000/api/updateticket/{id}/
 >>there you must enter id of the ticket in the url and send json file with 'subject'
-Response: 
 
+Response: 
+```json
 {
     "id": 1,
     "subject": "dsadsdasdasdada",
     "date": "2021-12-22"
 }
-
+```
 
 DELETE Ticket
 >http://localhost:8000/api/deleteticket/{id}/
 >>to delete message you must only enter id in url
+
 Response: 
-
+```json
 "Delete succesfull"
-
+```
 
 ___
 
@@ -60,18 +65,21 @@ ___
 POST Create Message
 >http://localhost:8000/api/createmessage/
 >>when you creating message you must send some values in the vody. it's 'ticket_id', 'user_id' and 'message'
-Response: 
 
+Response: 
+```json
 {
     "ticket_id": "4",
     "user_id": "1",
     "message": "21wqeqdsa3123qweq"
 }
+```
 
 GET All Messages
 >http://localhost:8000/api/getmessages/
-Response: 
 
+Response: 
+```json
 {
     "id": 10,
     "ticket_id": 3,
@@ -80,13 +88,14 @@ Response:
     "created_date": "2021-12-23",
     "updated_date": "2021-12-23"
 }
-
+```
 
 
 GET Messages by Tickets id
 >http://localhost:8000/api/getmessages/{id}/
-Response: 
 
+Response: 
+```json
 {
     {
         "id": 10,
@@ -105,11 +114,13 @@ Response:
         "updated_date": "2021-12-23"
     }
 }
+```
 
 GET Sorted Messages By Date
 >http://localhost:8000/api/getmessagesbydate/
-Response: 
 
+Response: 
+```json
 {
     {
         "id": 10,
@@ -128,13 +139,14 @@ Response:
         "updated_date": "2021-12-27"
     }
 }
-
+```
 
 PUT Message
 >http://localhost:8000/api/updatemessage/{id}/
 >>there you must enter id of the message in the url and send json file with 'message'
-Response: 
 
+Response: 
+```json
 {
     "id": 10,
     "ticket_id": 3,
@@ -143,12 +155,13 @@ Response:
     "created_date": "2021-12-27",
     "updated_date": "2021-12-27"
 }
-
+```
 
 DELETE Message
 >http://localhost:8000/api/deletemessage/{id}/
 >>to delete message you must only enter id in url
+
 Response: 
-
+```json
 "Delete succesfull"
-
+```
