@@ -4,9 +4,10 @@
 			<div class="support_subjects">
 				Support Subjects
 			</div>
-			<div class="ticket_item">
-				{{message}}
-				Salam asdsada  daSDad asdas
+			<div class="ticket_item" v-for="item in ticket" 
+			:key="item.id" 
+			:ticket_data = "item">
+				{{ticket_data.subject}}
 				2021-12-21
 			</div>
 		</div>
@@ -14,16 +15,17 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-	 data() {
+	data() {
     return {
-      info: message
+      ticket: []
     };
-  	},
+	},
   mounted() {
     axios
-      .get('http://localhost:8000/api/getmessages/')
-      .then(response => (this.message = response));
+      .get('http://localhost:8000/api/gettickets/')
+      .then(response => (this.ticket = response.data));
   }
 }
 </script>
