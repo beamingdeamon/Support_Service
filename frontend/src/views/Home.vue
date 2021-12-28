@@ -4,24 +4,26 @@
 			<div class="support_subjects">
 				Support Subjects
 			</div>
-			<div class="ticket_item" v-for="item in ticket" 
+			<Ticket_Item class="ticket_item"
+			v-for="item in ticket" 
 			:key="item.id" 
-			:ticket_data = "item">
-				{{ticket_data.subject}}
-				2021-12-21
-			</div>
+			:ItemData = "item" />
 		</div>
 	</div>
 </template>
 
 <script>
 import axios from 'axios'
+import Ticket_Item from '@/components/Ticket_Item.vue'
 export default {
 	data() {
     return {
       ticket: []
     };
 	},
+	components:{
+	Ticket_Item
+},
   mounted() {
     axios
       .get('http://localhost:8000/api/gettickets/')
