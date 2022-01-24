@@ -18,6 +18,4 @@ export default {
 <style lang="sass">
 body
   margin:0
-  *
-    border: 1px solid red
 </style>

@@ -1,10 +1,10 @@
 <template>
     <div class="wrapper">
 		<div class="links">
-			<a href="/">Support</a>
-			<a href="/">Support</a>
-			<a href="/">Support</a>
-			<a href="/">Support</a>
+			<router-link :to='{ path: `/` }' class="Link"> Support </router-link>
+			<router-link :to='{ path: `/` }' class="Link"> Support </router-link>
+			<router-link :to='{ path: `/` }' class="Link"> Support </router-link>
+			<router-link :to='{ path: `/` }' class="Link"> Support </router-link>
 		</div>
     </div>
 </template>
@@ -23,10 +23,8 @@
 			align-items: center
 			justify-content: space-around
 			float: left
-			a
+			.Link
 				color: black
 				font-size: 2vh
 				text-decoration: none
-			a:hover
-				color: red
 </style>
