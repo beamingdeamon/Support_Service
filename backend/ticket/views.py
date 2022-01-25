@@ -26,6 +26,14 @@ class GetTickets(generics.ListAPIView):
         queryset = Ticket.objects.all()
         serializer_class = serializers.TicketSerializer
 
+
+@permission_classes((permissions.AllowAny,))
+class GetTicketbyId(APIView):
+        def get(self, request, pk):   
+                queryset = Ticket.objects.get(pk=pk)
+                serializer = serializers.TicketSerializer(queryset)
+                return Response(serializer.data)
+
 @permission_classes((permissions.AllowAny,))
 class DeleteTicket(APIView):
         def delete(self, request, pk):

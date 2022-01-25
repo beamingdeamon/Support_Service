@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper">
-    <div class="main_wrapper">
+    <div class="main_wrapper">  
+      <h4>{{this.ticket.subject}}</h4>
       <div class="message_block">
         <Subject_Item class="subject_item"
           v-for="item in subject" 
@@ -22,6 +23,7 @@ import Subject_Item from '@/components/Subject_Item.vue'
 export default {
 	data() {
     return {
+      ticket: [],
       subject: [],
       user_id: null,
       message: null,
@@ -33,6 +35,9 @@ export default {
 },
   mounted() {
     axios
+      .get('http://localhost:8000/api/getticketbyid/'+ this.ticket_id)
+      .then(response => (this.ticket = response.data));
+    axios
       .get('http://localhost:8000/api/getmessages/'+ this.ticket_id)
       .then(response => (this.subject = response.data));
   },
@@ -43,7 +48,26 @@ export default {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ user_id: this.user_id, message: this.message, ticket_id: this.ticket_id})
       };
+      const requestTelegramOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ notification:{
+                                params:{
+                                            PARAMS1:"abdulla123123123123",
+                                            PARAMS2:"dsafsadfsadfsdaf",
+                                            PARAMS3:"ghdhdhfdh"
+                                            },
+                                sendMethodID_id: 1,
+                                templateID_id: 1
+                                }})
+      };
+      
       fetch("http://localhost:8000/api/createmessage/", requestOptions)
+        .then(response => response.json())
+        .then(data => (this.postId = data.id));
+
+        
+      fetch("http://localhost:8001/api/notifications/", requestTelegramOptions)
         .then(response => response.json())
         .then(data => (this.postId = data.id));
   }
@@ -61,6 +85,12 @@ export default {
       width: 80%
       height: 100%
       border: 1px solid grey
+      h4
+        text-align: center
+        font-size: 5vh
+        padding: 0
+        margin: 0
+        height: 5vh
       .input_id
         width: 2%
         height: 3.6vh
@@ -120,7 +150,7 @@ export default {
         opacity: 0
       .message_block
         width: 100%
-        height: 95%
+        height: 88%
         overflow: auto
         .subject_item
           margin-top: 2vh 

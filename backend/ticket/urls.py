@@ -6,6 +6,7 @@ from .views import UpdateTicket
 from .views import DeleteTicket
 from .views import GetTickets
 from .views import GetMessagebyId
+from .views import GetTicketbyId
 from .views import GetSortedMessagesByDate
 from .views import UpdateMessage
 from .views import DeleteMessage
@@ -22,4 +23,5 @@ urlpatterns = [
     path('getmessages/<int:ticketid>/', GetMessagebyId.as_view()),
     path('updatemessage/<int:pk>/', UpdateMessage.as_view()),
     path('deletemessage/<int:pk>/', DeleteMessage.as_view()),
+    path('getticketbyid/<int:pk>/', GetTicketbyId.as_view()),
 ]
