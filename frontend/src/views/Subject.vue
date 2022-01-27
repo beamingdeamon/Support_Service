@@ -48,28 +48,11 @@ export default {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ user_id: this.user_id, message: this.message, ticket_id: this.ticket_id})
       };
-      const requestTelegramOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ notification:{
-                                params:{
-                                            PARAMS1:"abdulla123123123123",
-                                            PARAMS2:"dsafsadfsadfsdaf",
-                                            PARAMS3:"ghdhdhfdh"
-                                            },
-                                sendMethodID_id: 1,
-                                templateID_id: 1
-                                }})
-      };
       
       fetch("http://localhost:8000/api/createmessage/", requestOptions)
         .then(response => response.json())
         .then(data => (this.postId = data.id));
 
-        
-      fetch("http://localhost:8001/api/notifications/", requestTelegramOptions)
-        .then(response => response.json())
-        .then(data => (this.postId = data.id));
   }
 }
 }

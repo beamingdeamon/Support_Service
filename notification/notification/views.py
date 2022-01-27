@@ -43,14 +43,8 @@ class NotificationView(APIView):
         for i in params:
             text = text.replace('#' + i, params[i])
 
-        if notification.sendMethodID.id == 1:
-            email = EmailMessage(template.name, text, to=['eldar_2301@mail.ru'])
-            email.send()
-        elif notification.sendMethodID.id == 2:
-            # https://telepot.readthedocs.io/en/latest/
-            bot = telepot.Bot('5004111173:AAGrkTPki8mSDRQUpNgU30WlmSCA8bw_dd8')
-            bot.sendMessage(473071221, text)#id key from chat https://api.telegram.org/bot5004111173:AAGrkTPki8mSDRQUpNgU30WlmSCA8bw_dd8/getUpdates
-            # telegram_send.send(messages=["Wow that was easy!"])
+        bot = telepot.Bot('1109720830:AAEbIPxSXS0c-S_6rRNx5TVNrg8Aoe2gFN0')
+        bot.sendMessage(473071221, text)
 
         notification.save()
         return JsonResponse(model_to_dict(notification))
