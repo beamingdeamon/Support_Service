@@ -15,6 +15,7 @@ app_name = "Ticket"
 urlpatterns = [
     path('createticket/', CreateTicket.as_view()),
     path('gettickets/', GetTickets.as_view()),
+    path('getticketbyid/<int:pk>/', GetTicketbyId.as_view()),
     path('updateticket/<int:pk>/', UpdateTicket.as_view()),
     path('deleteticket/<int:pk>/', DeleteTicket.as_view()),
     path('createmessage/', CreateMessage.as_view()),
@@ -23,5 +24,4 @@ urlpatterns = [
     path('getmessages/<int:ticketid>/', GetMessagebyId.as_view()),
     path('updatemessage/<int:pk>/', UpdateMessage.as_view()),
     path('deletemessage/<int:pk>/', DeleteMessage.as_view()),
-    path('getticketbyid/<int:pk>/', GetTicketbyId.as_view()),
 ]
