@@ -4,6 +4,7 @@
 			<div class="support_subjects">
 				Support Subjects
 			</div>
+			{{JwtData}}
 			<Ticket_Item class="ticket_item"
 			v-for="item in ticket" 
 			:key="item.id" 
@@ -23,7 +24,12 @@ export default {
 	},
 	components:{
 	Ticket_Item
-},
+},props: {
+        JwtData: {
+            type: Object,
+            default: () => {}
+        }
+    },
   mounted() {
     axios
       .get('http://localhost:8000/api/gettickets/')

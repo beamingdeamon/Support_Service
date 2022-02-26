@@ -9,7 +9,6 @@
           :ItemData = "item" />
       </div>
       <form >
-        <input type="number" v-model="user_id" class="input_id" placeholder="Id" required>
         <input type="text" v-model="message" class="input_message" placeholder="message" required>
         <button class="send" @click="SendMessage">Send</button>
       </form>
@@ -25,7 +24,6 @@ export default {
     return {
       ticket: [],
       subject: [],
-      user_id: null,
       message: null,
       ticket_id: this.$route.params.id,
     };
@@ -46,7 +44,7 @@ export default {
       const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user_id: this.user_id, message: this.message, ticket_id: this.ticket_id})
+      body: JSON.stringify({ message: this.message, ticket_id: this.ticket_id})
       };
       
       fetch("http://localhost:8000/api/createmessage/", requestOptions)
