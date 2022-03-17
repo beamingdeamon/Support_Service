@@ -13,13 +13,13 @@
 </template>
 
 <script>
-
+import axios from 'axios'
 export default {
 	data() {
 		return {
 			email: null,
 			password: null,
-			json:[]
+			results:[]
 		};
 	},props: {
         JwtData: {
@@ -28,30 +28,20 @@ export default {
         }
     },
 	methods:{
-		LoginUser(){
-			const requestOptions = {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({email: this.email, pasword: this.password})
-			};
-			
-			const response = fetch("http://localhost:5000/api/login", requestOptions);
-			
-			alert(response.status)
-				// .then(response=>response.json())
-				// .then(function(response){
-				// 	if (response.status === 200){
-				// 		this.$router.push("/subjects")
-				// 	}
-				// });
-				//.then(data => (this.postId = data.id));
-			if (response.ok) {
-				alert("GOOD")
+		async LoginUser(){
+			const response = await axios.post("http://127.0.0.1:5000/api/login", {
+				email: this.email,
+				password: this.password,
+			});
+			//localStorage.setItem("token", response.data.jwt);
+			const status = JSON.parse(response.data.response.status);
+			if (status == "200") {
+				this.$router.push("/subjects");
+			} else {
+				alert("Bad")
 			}
 		}
 	},
-	mounted() {
-  },
 
 }
 </script>

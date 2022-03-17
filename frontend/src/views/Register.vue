@@ -3,7 +3,7 @@
 		<div class="content_wrapper">
 			<h1>Registration</h1>
 			<form >
-        <input type="text" v-model="email" class="inputs" placeholder="Enter your email" required>
+        <input type="mail" v-model="email" class="inputs" placeholder="Enter your email" required>
         <input type="text" v-model="first_name" class="inputs" placeholder="Enter your firstname" required>
         <input type="text" v-model="last_name" class="inputs" placeholder="Enter your lastname" required>
         <input type="password" v-model="password" class="inputs" placeholder="Enter your password" required>
@@ -23,7 +23,8 @@ export default {
 			last_name: null,
 			email: null,
 			password: null,
-			result: [],
+			role_id: 1,
+			results: [],
 		};
 	},
 	methods:{
@@ -31,17 +32,12 @@ export default {
 			const requestOptions = {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({email: this.email, first_name: this.first_name,last_name: this.last_name,  pasword: this.password, role: "user", permission: "user"})
+			body: JSON.stringify({email: this.email, first_name: this.first_name,last_name: this.last_name,  password: this.password, role_id: this.role_id})
 			};
 			
-			fetch("localhost:5000/api/register", requestOptions)
+			fetch("http://127.0.0.1:5000/api/register", requestOptions)
 				.then(response => {this.results = response.data})
 				.then(data => (this.postId = data.id));
-
-		}
-	},mounted() {
-		if(this.result["succes"] == false ){
-			this.$router.push("/login")
 		}
   },
 }
